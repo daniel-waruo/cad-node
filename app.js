@@ -8,7 +8,7 @@ const router = require('./router');
 
 const app = express();
 
-const port = 3030;
+const port = process.env.PORT ? process.env.PORT : 3030;
 
 app.set('port', port);
 
@@ -42,7 +42,10 @@ app.use((err, req, res) => {
 
 // Start the server
 const server = http.createServer(app);
+
+// listen on the port
 server.listen(port);
+
 server.on('listening', () => {
   console.log('Application Ready! listening on port ' + port);
 });
